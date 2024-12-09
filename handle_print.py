@@ -108,7 +108,7 @@ def parse_with_string(stat):
 
 # Test cases
 stat_list_string = [
-    'print("value=",2bba);',
+    'print("value=",bba;',
     'print("bad example, bba);',
     'print("valid_string=",abc);'
 ]

@@ -10,14 +10,14 @@ DETECT ERRORS:
 - var (if var is spelled wrong)                 ... DONE
 - begin (if begin is spelled wrong)             ... DONE
 - integer (if integer is spelled wrong)         ... DONE
-- print (if print is spelled wrong)
+- print (if print is spelled wrong)             ... DONE
 
 UNKNOWN IDENTIFIER if variable is not defined:
 - ;     (semicolon is missing if grammar required)         ... DONE
-- ,     (comma is missing if grammar required) 
-- .     (period is missing if grammar required)   
-- (     left parentheses is missing
-- )     right parentheses is missing
+- ,     (comma is missing if grammar required)             ... DONE
+- .     (period is missing if grammar required)            
+- (     left parentheses is missing                        ... DONE
+- )     right parentheses is missing                       ... DONE
 
 '''
 
