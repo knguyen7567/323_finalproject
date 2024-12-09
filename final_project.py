@@ -9,7 +9,7 @@ DETECT ERRORS:
 - program (if program is spelled wrong)         ... DONE
 - var (if var is spelled wrong)                 ... DONE
 - begin (if begin is spelled wrong)             ... DONE
-- integer (if integer is spelled wrong)
+- integer (if integer is spelled wrong)         ... DONE
 - print (if print is spelled wrong)
 
 UNKNOWN IDENTIFIER if variable is not defined:
@@ -115,15 +115,15 @@ def execute_program(READFILE):
     parsed_content = parse_program_to_arrays(cleaned_content_array)
 
     # Uncomment the lines below for debugging
-    # for k, v in parsed_content.items():
-    #     print(f'{k} : {v}')
+    for k, v in parsed_content.items():
+        print(f'{k} : {v}')
 
     is_valid = valid_input(parsed_content)
     
     if is_valid == False:
-        print("Invalid input.")
+        print("~ Invalid input format ...")
     else:
-        print("Valid Input.")
+        print("~ Valid input format ...")
         parse(parsed_content)
     
 
