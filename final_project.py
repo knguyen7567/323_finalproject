@@ -1,4 +1,5 @@
 from fix_txt import clean
+from ppt import valid_input, parse
 
 '''
 
@@ -12,17 +13,13 @@ DETECT ERRORS:
 - print (if print is spelled wrong)
 
 UNKNOWN IDENTIFIER if variable is not defined:
-- ;     (semicolon is missing if grammar required) 
+- ;     (semicolon is missing if grammar required)         ... DONE
 - ,     (comma is missing if grammar required) 
 - .     (period is missing if grammar required)   
 - (     left parentheses is missing
 - )     right parentheses is missing
 
 '''
-
-''' PREDICTIVE PARSING TABLE '''
-
-''' [program <identifier> ; var <dec-list> begin <stat-list> end]'''
 
 def parse_program_to_arrays(file_content):
     program_array = []
@@ -32,6 +29,7 @@ def parse_program_to_arrays(file_content):
     has_semicolon = False
     has_begin = False
     has_end = False
+    has_var = False
     current_section = None
 
     for line in file_content:
@@ -44,6 +42,7 @@ def parse_program_to_arrays(file_content):
             has_semicolon = ";" in line  # Check for semicolon
 
         elif line.startswith("var"):  # Start of declarations
+            has_var = True
             current_section = "dec_list"
 
         elif line.startswith("begin"):  # Start of statements
@@ -64,25 +63,70 @@ def parse_program_to_arrays(file_content):
     return {
         "program": program_array,
         "identifier": identifier_array,
-        ";": ";" if has_semicolon else None,
-        "var": "var",
+        ";": True if has_semicolon else False,
+        "var": True if has_var else False,
         "dec_list": dec_list_array,
-        "begin": "begin" if has_begin else None,
+        "begin": True if has_begin else False,
         "stat_list": stat_list_array,
-        "end": "end" if has_end else None,
+        "end": True if has_end else False,
     }
 
-
-
 READFILE = 'final.txt'
+
+'''
+
+Based on the the notes, the structure of an input should be like this:
+
+    program <identifier> ; var <dec-list> begin <stat-list> end
+
+    example:
+        program = ['program']
+        identifier = ['f2024']
+        ; = 
+        var = True
+        dec_list = ['a , b2a , c, bba : integer ;']
+        begin = begin
+        stat_list = ['a = 3 ;', 'b2a = 14 ;', 'c = 5 ;', 'print ( c );', 'bba = a1 * ( b2a + 2 * c) ;', 'print ( “value=”, bba ) ;']
+        end = end
+
+With that being said. The project functions in a few steps.
+
+    1. Cleans the final.txt file and removes comments and indentations, extra spaces, etc ......'cleaned_content'
+    2. Convert cleaned file into an array  ...... 'clean_content_array'
+    3. Format the array into a dictionary that helps our program interpret it easier ...... 'parsed_content'
+
+        program : ['program']
+        identifier : ['f2024']
+        ; : True
+        var : True
+        dec_list : ['a, b2a, c, bba : integer;']
+        begin : True
+        stat_list : ['a=3;', 'b2a=14;', 'c=5;', 'print (c);', 'bba=a1 * (b2a + 2 * c);', 'print (“value=”, bba);']
+        end : True
+
+    4. This makes sure that the keywords and semicolons are in the proper order even before checking the identifiers in our program.
+    5. ...
+
+'''
 
 def execute_program(READFILE):
     cleaned_content = clean(READFILE)
     cleaned_content_array = cleaned_content.split("\n")
     parsed_content = parse_program_to_arrays(cleaned_content_array)
 
-    for key, value in parsed_content.items():
-        print(f"{key} = {value}")
+    # Uncomment the lines below for debugging
+    # for k, v in parsed_content.items():
+    #     print(f'{k} : {v}')
+
+    is_valid = valid_input(parsed_content)
+    
+    if is_valid == False:
+        print("Invalid input.")
+    else:
+        print("Valid Input.")
+        parse(parsed_content)
+    
+
 
 execute_program(READFILE)
 

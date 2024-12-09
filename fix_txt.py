@@ -57,11 +57,11 @@ def clean(FILENAME):
     cleaned_code = "\n".join(cleaned_content)
     
     # fix spacing around symbols
-    # cleaned_code = cleaned_code.replace(" ,", ",")
-    # cleaned_code = cleaned_code.replace(";", " ;")
-    # cleaned_code = cleaned_code.replace("= ", "= ")
-    # cleaned_code = cleaned_code.replace(" =", "= ")
-    # cleaned_code = cleaned_code.replace("( ", "(").replace(" )", ")")
+    cleaned_code = cleaned_code.replace(" ,", ",")
+    cleaned_code = cleaned_code.replace(" ;", ";")
+    cleaned_code = cleaned_code.replace("= ", "=")
+    cleaned_code = cleaned_code.replace(" =", "=")
+    cleaned_code = cleaned_code.replace("( ", "(").replace(" )", ")")
     
     return cleaned_code
 
