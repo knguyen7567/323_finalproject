@@ -95,18 +95,18 @@ With that being said. The project functions in a few steps.
     2. Convert cleaned file into an array  ...... 'clean_content_array'
     3. Format the array into a dictionary that helps our program interpret it easier ...... 'parsed_content'
 
-        program : ['program']
-        identifier : ['f2024']
-        ; : True
-        var : True
-        dec_list : ['a, b2a, c, bba : integer;']
-        begin : True
-        stat_list : ['a=3;', 'b2a=14;', 'c=5;', 'print (c);', 'bba=a1 * (b2a + 2 * c);', 'print (“value=”, bba);']
-        end : True
+        i.      program : ['program']
+        ii.     identifier : ['f2024']
+        iii.    ; : True
+        iv.     var : True
+        v.      dec_list : ['a, b2a, c, bba : integer;']
+        vi.     begin : True
+        vii.    stat_list : ['a=3;', 'b2a=14;', 'c=5;', 'print (c);', 'bba=a1 * (b2a + 2 * c);', 'print (“value=”, bba);']
+        viii.   end : True
 
     4. This makes sure that the keywords and semicolons are in the proper order even before checking the identifiers in our program.
-    5. ...
-
+    5. Check identifier, dec_list, and stat_list.
+    
 '''
 
 def execute_program(READFILE):
