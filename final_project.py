@@ -1,6 +1,6 @@
 from fix_txt import clean
 from ppt import valid_input, parse
-
+from handle_identifier import check_identifier
 '''
 
 RESERVED WORDS: program, var, end, integer, print
@@ -57,7 +57,8 @@ def parse_program_to_arrays(file_content):
             dec_list_array.append(line)
 
         elif current_section == "stat_list":  # Add statements
-            stat_list_array.append(line)
+            stat_list_array.append(line.replace(" ", ""))
+            # stat_list_array.append(line)
 
     # Prepare the final arrays with the requested structure
     return {
@@ -115,17 +116,21 @@ def execute_program(READFILE):
     parsed_content = parse_program_to_arrays(cleaned_content_array)
 
     # Uncomment the lines below for debugging
-    for k, v in parsed_content.items():
-        print(f'{k} : {v}')
+    # for k, v in parsed_content.items():
+    #     print(f'{k} : {v}')
 
     is_valid = valid_input(parsed_content)
-    
+    final_valid = False
+
     if is_valid == False:
         print("~ Invalid input format ...")
     else:
         print("~ Valid input format ...")
-        parse(parsed_content)
+        final_valid = parse(parsed_content)
+        # print(final_valid)
     
+    if final_valid:
+        print("Program is ready to compile!")
 
 
 execute_program(READFILE)

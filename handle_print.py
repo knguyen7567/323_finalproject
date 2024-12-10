@@ -6,12 +6,12 @@ write: print("string", identifier)    ... NEED TO DO
 '''
 
 import re
-from ppt import check_identifier
+from handle_identifier import check_identifier
 
 def parse_only_id(stat):
     # Use regex to split by '(', ')', and ';', but keep them in the result
     tokens = re.findall(r'print|[();]|\w+', stat)
-    print(tokens)
+    # print(tokens)
     if 'print' in tokens:
         print_index = tokens.index('print')
         if print_index + 1 >= len(tokens) or tokens[print_index + 1] != '(':
@@ -69,7 +69,6 @@ def check_string_content(content):
     # print(f"Valid string content: {quoted_string}")
     return True
 
-
 def parse_with_string(stat):
     """Parse the statement and validate the structure."""
     tokens = re.findall(r'print|[();,"]|(?:\w+|=)', stat)
@@ -107,12 +106,14 @@ def parse_with_string(stat):
 
 
 # Test cases
-stat_list_string = [
-    'print("value=",bba;',
-    'print("bad example, bba);',
-    'print("valid_string=",abc);'
-]
+# stat_list_string = [
+    # 'print("value=",bba;',          # missing parenthesis
+    # 'print("bad example, bba);',    # missing quotations
+    # 'print("valid_string=",abc);',  # valid
+    # 'print("valid_string=", 23)'   # invalid identifier
+    # 'print("value=",bba);' 
+# ]
 
-for stat in stat_list_string:
-    result = parse_with_string(stat)
-    print(result)
+# for stat in stat_list_string:
+#     result = parse_with_string(stat)
+    # print(result)
