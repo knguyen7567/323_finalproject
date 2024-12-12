@@ -1,6 +1,6 @@
 from fix_txt import clean
-from ppt import valid_input, parse
-from handle_identifier import check_identifier
+from check_valid_parse import valid_input, parse
+
 '''
 
 RESERVED WORDS: program, var, end, integer, print

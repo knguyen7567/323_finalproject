@@ -1,3 +1,5 @@
+import os
+
 '''
 ORIGINAL:
 
@@ -19,6 +21,8 @@ print ( c ); (* display c *)
 
 end
 '''
+
+
 
 content = None
 
@@ -71,11 +75,17 @@ def clean(FILENAME):
     return cleaned_code
 
 def read(file):
-    with open('final.txt', encoding='utf-8') as f:
+    with open(file, encoding='utf-8') as f:
         content = f.read()
         return content
 
 if __name__ == '__main__':
-    content = read('final.txt')
-    cleaned_content = clean(content)
-    print(cleaned_content)
+    file_path = 'final.txt'  # Update this to the correct path if needed
+    if not os.path.exists(file_path):
+        print(f"File '{file_path}' not found in the directory: {os.getcwd()}")
+    else:
+        content = read(file_path)
+        if content:
+            cleaned_content = clean(file_path)
+            if cleaned_content:
+                print(cleaned_content)

@@ -1,4 +1,3 @@
-import re
 from handle_print import parse_with_string, parse_only_id
 from handle_identifier import check_identifier
 from handle_assign import handle_assign
@@ -23,20 +22,17 @@ def check_stat(stat):
         return False
 
     if 'print' and '"' in stat:
-        # print("write with string")
         valid = parse_with_string(stat)
         return True if valid else False
     elif 'print' in stat:
-        # print("write no string")
         valid = parse_only_id(stat)
         return True if valid else False
     elif '=' in stat and 'print' not in stat:
-        # print(f'assign: {stat}')
         valid = handle_assign(stat)
         return True if valid else False
     
     else:
-        # print("something is likely mispelled")
+        print("Something is likely mispelled.")
         return False
     
 
@@ -67,6 +63,7 @@ def parse(input_dict):
                         print("~ dec_list is good! Move to stat_list ...")
                         continue
                     else:
+                        print("Error.")
                         return False
                 else:
                     print("Error: missing `:`")

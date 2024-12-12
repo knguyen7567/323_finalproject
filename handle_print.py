@@ -15,6 +15,7 @@ def parse_only_id(stat):
     if 'print' in tokens:
         print_index = tokens.index('print')
         if print_index + 1 >= len(tokens) or tokens[print_index + 1] != '(':
+            print("Missing parenthesis.")
             return False  # 'print' is not followed by '('
     else: 
         return False
